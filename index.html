@@ -265,19 +265,23 @@
 
 <!-- sticky mobile buy bar -->
 
+<div class="buybar"><a class="btn" href="https://stan.store/clairesparenting/p/the-calm-response-system">Get it now — $47</a></div>
 <script>
 (function(){
   var bar=document.querySelector('.buybar');
-  var heroBtn=document.querySelector('.hero .btn')||document.querySelector('.btn');
-  if(!bar||!heroBtn)return;
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(e){
-      bar.classList.toggle('show', !e[0].isIntersecting && e[0].boundingClientRect.top<0);
-    }).observe(heroBtn);
-  }else{bar.classList.add('show');}
+  var heroBtn=document.querySelector('.hero .btn');
+  var finalSec=document.getElementById('buy');
+  if(!bar||!heroBtn){bar&&bar.classList.add('show');return;}
+  var pastHero=false, finalVisible=false;
+  function update(){ bar.classList.toggle('show', pastHero && !finalVisible); }
+  new IntersectionObserver(function(e){
+    pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top<0; update();
+  }).observe(heroBtn);
+  if(finalSec){
+    new IntersectionObserver(function(e){ finalVisible = e[0].isIntersecting; update(); },{rootMargin:'0px 0px -20% 0px'}).observe(finalSec);
+  }
 })();
 </script>
-<div class="buybar"><a class="btn" href="https://stan.store/clairesparenting/p/the-calm-response-system">Get it now — $47</a></div>
 
 </body>
 </html>
