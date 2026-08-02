@@ -295,5 +295,11 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 })();
 </script>
 
+<script>
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href*="stan.store"]');
+  if (a && window.ttq) ttq.track('InitiateCheckout', {content_name: 'Calm Response System', value: 29, currency: 'USD'});
+});
+</script>
 </body>
 </html>
